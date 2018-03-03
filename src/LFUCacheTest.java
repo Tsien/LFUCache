@@ -15,23 +15,23 @@ class LFUCacheTest {
 	void testLFUCache() {
 		LFUCache<Integer, Integer> cache;
 		try {
-			cache = new LFUCache<Integer, Integer>(6, 2);			
-		    fail( "Failed to throw exception!" );
+			cache = new LFUCache<Integer, Integer>(6, 2);
+			fail( "Failed to throw exception!" );
 		} catch (IllegalArgumentException e) {}
 		try {
-			cache = new LFUCache<Integer, Integer>(-1, 0.2);			
-		    fail( "Failed to throw exception!" );
+			cache = new LFUCache<Integer, Integer>(-1, 0.2);
+			fail( "Failed to throw exception!" );
 		} catch (IllegalArgumentException e) {}
 		try {
-			cache = new LFUCache<Integer, Integer>(3, -0.2);			
-		    fail( "Failed to throw exception!" );
+			cache = new LFUCache<Integer, Integer>(3, -0.2);
+			fail( "Failed to throw exception!" );
 		} catch (IllegalArgumentException e) {}
 		cache = new LFUCache<Integer, Integer>(10, 0.2);
 		cache.set(1, 1);
 		LFUCache<String, String> cache2 = new LFUCache<String, String>(4, 0.5);
 		assert(cache2.get("5") == null);
 		cache2.set("1", "1");
-		assert("1" == cache2.get("1"));		
+		assert("1" == cache2.get("1"));
 	}
 
 	@Test
@@ -50,9 +50,9 @@ class LFUCacheTest {
 		double num = 0.5;
 		LFUCache<Integer, Integer> cache = new LFUCache<Integer, Integer>(cap, num);
 		cache.set(1, 1);
-		assert(1 == cache.get(1));		
+		assert(1 == cache.get(1));
 		cache.set(1, 2);
-		assert(2 == cache.get(1));		
+		assert(2 == cache.get(1));
 	}
 
 	@Test
@@ -132,12 +132,12 @@ class LFUCacheTest {
 		assert(cache.get(2) == 2);
 		// increasing frequency
 		cache.set(1, 2);
-		cache.set(1, 3);	
-		cache.set(1, 4);	
+		cache.set(1, 3);
+		cache.set(1, 4);
 		assert(cache.get(1) == 4);
-		cache.set(3, 5);	  // evict (2, 2)
+		cache.set(3, 5);  // evict (2, 2)
 		assert(cache.get(2) == null);
-		assert(cache.get(1) == 4);		
+		assert(cache.get(1) == 4);
 		assert(cache.get(3) == 5);
 	}
 	
@@ -254,10 +254,10 @@ class LFUCacheTest {
 				key = getNextKey(manual, sc, rand);
 				int d = getNextDelta(manual, sc, rand);
 				System.out.println("DECR: " + key + " by " + d);
-				cache.decr(key, d);			
+				cache.decr(key, d);
 			}
 			cache.print();
 		}
 		sc.close();
-    }
+	}
 }

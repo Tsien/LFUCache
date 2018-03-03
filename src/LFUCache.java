@@ -20,13 +20,13 @@ public class LFUCache<K, V> {
 	private int minFreq;  // the minimum frequency in the cache
 
 	private final int capacity;
-    private final int evict_num;
-    
-    /*
-     * Update frequency of the key-value pair in the cache if the key exists.
-     * Increase the frequency of this pair and move it to the next slots in the frequency list
-     * If the frequency reaches the capacity, move it the end of current slot.
-     */
+	private final int evict_num;
+
+	/*
+	 * Update frequency of the key-value pair in the cache if the key exists.
+	 * Increase the frequency of this pair and move it to the next slots in the frequency list
+	 * If the frequency reaches the capacity, move it the end of current slot.
+	 */
 	private synchronized void touch(K key) {
 		if (cache.containsKey(key)) {
 			int freq = cache.get(key).getKey();
@@ -63,9 +63,9 @@ public class LFUCache<K, V> {
 	
 	@SuppressWarnings("unchecked")
 	public LFUCache(int cap, double evictFactor) {
-        if (cap <= 0 || evictFactor <= 0 || evictFactor >= 1) {
-            throw new IllegalArgumentException("Eviction factor or Capacity is illegal.");
-        }
+		if (cap <= 0 || evictFactor <= 0 || evictFactor >= 1) {
+			throw new IllegalArgumentException("Eviction factor or Capacity is illegal.");
+		}
 		capacity = cap;
 		evict_num = Math.min(cap, (int)Math.ceil(cap * evictFactor));
 		minFreq = 0;
@@ -119,8 +119,8 @@ public class LFUCache<K, V> {
 	public synchronized Integer incr(K key, Integer delta) {
 		Integer value = (Integer) get(key);
 		value = value == null ? delta : value + delta;
-        set(key, (V) value);
-        return value;
+		set(key, (V) value);
+		return value;
 	}
 	
 	public synchronized Integer decr(K key, Integer delta) {
